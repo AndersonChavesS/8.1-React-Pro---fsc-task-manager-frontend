@@ -6,12 +6,12 @@ const App = () => {
     const [tasks, setTasks] = useState([
         {
             id: "1",
-            description: "Estudar Programação",
+            description: "Estudar programação",
             isCompleted: false,
         },
         {
             id: "2",
-            description: "Ler",
+            description: "Correr",
             isCompleted: true,
         },
     ]);
