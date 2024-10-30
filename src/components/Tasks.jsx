@@ -8,7 +8,7 @@ import AddTask from "./AddTask";
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
 
-    const fechtTasks = async () => {
+    const fetchTasks = async () => {
         try {
             const { data } = await axios.get(
                 "https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks"
@@ -19,7 +19,7 @@ const Tasks = () => {
         }
     };
     useEffect(() => {
-        fechtTasks();
+        fetchTasks();
     }, []);
 
     return (
@@ -29,7 +29,7 @@ const Tasks = () => {
 
                 <div className="last-tasks">
                     <h3>Últimas tarefas</h3>
-                    <AddTask />
+                    <AddTask fetchTasks={fetchTasks}/>
                     <div className="tasks-list">
                         {tasks
                             .filter((task) => task.isCompleted === false)

@@ -8,7 +8,7 @@ import "./AddTask.scss";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 
-const AddTask = () => {
+const AddTask = ({fetchTasks}) => {
     const [task, setTask] = useState("");
 
     const alert = toast;
@@ -32,8 +32,12 @@ const AddTask = () => {
                     isCompleted: false,
                 }
             );
+
+            await fetchTasks()
+
+            setTask("")
         } catch (error) {
-            console.error(error);
+            console.error('Algo de errado não esta certo.');
         }
     };
 
