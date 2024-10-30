@@ -16,7 +16,7 @@ const AddTask = () => {
         " A tarefa precisa de uma descrição para ser adicionada.";
 
     const onChange = (e) => {
-        setTask(e.target.valeu);
+        setTask(e.target.value);
     };
 
     const handletaskAddtion = async () => {
@@ -24,6 +24,14 @@ const AddTask = () => {
             if (task.length === 0) {
                 return alert(messageError);
             }
+
+            await axios.post(
+                "https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks",
+                {
+                    description: task,
+                    isCompleted: false,
+                }
+            );
         } catch (error) {
             console.error(error);
         }
