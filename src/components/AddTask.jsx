@@ -8,10 +8,9 @@ import "./AddTask.scss";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 
-const AddTask = ({fetchTasks}) => {
+const AddTask = ({ fetchTasks }) => {
     const [task, setTask] = useState("");
 
- 
     const messageError =
         " A tarefa precisa de uma descrição para ser adicionada.";
 
@@ -22,7 +21,7 @@ const AddTask = ({fetchTasks}) => {
     const handletaskAddtion = async () => {
         try {
             if (task.length === 0) {
-                return toast.dark(messageError);
+                return toast.warn(messageError);
             }
 
             await axios.post(
@@ -33,26 +32,28 @@ const AddTask = ({fetchTasks}) => {
                 }
             );
 
-            await fetchTasks()
+            await fetchTasks();
 
-            setTask("")
+            setTask("");
         } catch (error) {
-            console.error('Algo de errado não esta certo.');
+            toast.error("Algo deu errado.");
         }
     };
 
     return (
-        <div className="add-task-container">
-            <CustomInput
-                label="Adicionar tarefa..."
-                value={task}
-                onChange={onChange}
-            />
-            <CustomButton onClick={handletaskAddtion}>
-                <FaPlus size={14} color="#fff" />
-            </CustomButton>
+        <>
+            <div className="add-task-container">
+                <CustomInput
+                    label="Adicionar tarefa..."
+                    value={task}
+                    onChange={onChange}
+                />
+                <CustomButton onClick={handletaskAddtion}>
+                    <FaPlus size={14} color="#fff" />
+                </CustomButton>
+            </div>
             <ToastContainer />
-        </div>
+        </>
     );
 };
 
