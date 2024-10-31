@@ -11,7 +11,7 @@ import CustomButton from "./CustomButton";
 const AddTask = ({fetchTasks}) => {
     const [task, setTask] = useState("");
 
-    const alert = toast;
+ 
     const messageError =
         " A tarefa precisa de uma descrição para ser adicionada.";
 
@@ -22,7 +22,7 @@ const AddTask = ({fetchTasks}) => {
     const handletaskAddtion = async () => {
         try {
             if (task.length === 0) {
-                return alert(messageError);
+                return toast.dark(messageError);
             }
 
             await axios.post(
