@@ -5,14 +5,18 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "./TaskItem.scss";
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, fetchTasks }) => {
     const handleTaskDeletion = async () => {
         try {
             await axios.delete(
                 `https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks/${task._id}`
             );
+            
+            await fetchTasks();
+            
+            toast.success("A tarefa foi removida com sucesso!");
         } catch (error) {
-            toast.dark("Algo Deu Errado.");
+            toast.error("Algo Deu Errado.");
         }
     };
 
