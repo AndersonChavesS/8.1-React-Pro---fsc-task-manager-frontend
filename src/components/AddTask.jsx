@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify"; // Remova ToastContainer daqui
 
 import "./AddTask.scss";
 import CustomInput from "./CustomInput";
@@ -12,13 +11,14 @@ const AddTask = ({ fetchTasks }) => {
     const [task, setTask] = useState("");
 
     const messageError =
-        " A tarefa precisa de uma descrição para ser adicionada.";
+        "A tarefa precisa de uma descrição para ser adicionada.";
 
     const onChange = (e) => {
         setTask(e.target.value);
     };
 
-    const handletaskAddtion = async () => {
+    const handleTaskAddition = async () => {
+      
         try {
             if (task.length === 0) {
                 return toast.warn(messageError);
@@ -34,6 +34,8 @@ const AddTask = ({ fetchTasks }) => {
 
             await fetchTasks();
 
+            toast.success('Tarefa adicionada com sucesso!')
+
             setTask("");
         } catch (error) {
             toast.error("Algo deu errado.");
@@ -48,11 +50,10 @@ const AddTask = ({ fetchTasks }) => {
                     value={task}
                     onChange={onChange}
                 />
-                <CustomButton onClick={handletaskAddtion}>
+                <CustomButton onClick={handleTaskAddition}>
                     <FaPlus size={14} color="#fff" />
                 </CustomButton>
             </div>
-            <ToastContainer />
         </>
     );
 };
