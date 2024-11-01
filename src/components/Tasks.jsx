@@ -4,7 +4,8 @@ import axios from "axios";
 import "./Tasks.scss";
 import TaskItem from "./TaskItem";
 import AddTask from "./AddTask";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -16,9 +17,10 @@ const Tasks = () => {
             );
             setTasks(data);
         } catch (error) {
-            console.log(error);
+            toast.error("Algo deu errado.");
         }
     };
+
     useEffect(() => {
         fetchTasks();
     }, []);
@@ -31,11 +33,13 @@ const Tasks = () => {
                 <div className="last-tasks">
                     <h3>Últimas tarefas</h3>
                     <AddTask fetchTasks={fetchTasks} />
+
                     <div className="tasks-list">
                         {tasks
                             .filter((task) => task.isCompleted === false)
                             .map((lastTask) => (
                                 <TaskItem
+                                    key={lastTask._id}
                                     task={lastTask}
                                     fetchTasks={fetchTasks}
                                 />
@@ -50,8 +54,9 @@ const Tasks = () => {
                             .filter((task) => task.isCompleted)
                             .map((completedTask) => (
                                 <TaskItem
+                                    key={completedTask._id}
                                     task={completedTask}
-                                    fetchTasks={fetch}
+                                    fetchTasks={fetchTasks}
                                 />
                             ))}
                     </div>
