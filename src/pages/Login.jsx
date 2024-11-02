@@ -1,7 +1,7 @@
-import CustomButtom from '../components/CustomButton'
+import CustomButtom from "../components/CustomButton";
 
 import "./Login.scss";
-import { logo } from "../assets/images/logo-2.png";
+import logo from "../assets/images/logo-2.png";
 
 const Login = () => {
     return (
@@ -9,7 +9,7 @@ const Login = () => {
             {" "}
             <img src={logo} alt="Full Stack Club" />
             <div className="button-container">
-              <CustomButtom>Entrar</CustomButtom>
+                <CustomButtom>Entrar</CustomButtom>
             </div>
         </div>
     );
