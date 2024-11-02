@@ -1,11 +1,10 @@
 import CustomButton from "./CustomButton";
-
-import "./Sidebar.scss";
+import './Sidebar.scss'
 import logo from "../assets/images/logo.png";
 
 const Sidebar = () => {
     return (
-        <div classsName="sidebar-container">
+        <div className="sidebar-container">
             <div className="logo">
                 <img src={logo} alt="Full Stack Club" />
             </div>
