@@ -16,8 +16,8 @@ const Tasks = () => {
                 "https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks"
             );
             setTasks(data);
-        } catch (error) {
-            toast.error("Algo deu errado.");
+        } catch (_error) {
+            toast.error("Não foi possível recuperar as tarefas.");
         }
     };
 

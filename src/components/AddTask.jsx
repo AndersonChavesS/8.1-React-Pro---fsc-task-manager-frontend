@@ -36,7 +36,7 @@ const AddTask = ({ fetchTasks }) => {
             toast.success("Tarefa adicionada com sucesso!");
 
             setTask("");
-        } catch (error) {
+        } catch (_error) {
             toast.error("Algo deu errado.");
         }
     };
