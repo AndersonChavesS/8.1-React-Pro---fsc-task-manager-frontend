@@ -18,7 +18,6 @@ const AddTask = ({ fetchTasks }) => {
     };
 
     const handleTaskAddition = async () => {
-      
         try {
             if (task.length === 0) {
                 return toast.warn(messageError);
@@ -34,7 +33,7 @@ const AddTask = ({ fetchTasks }) => {
 
             await fetchTasks();
 
-            toast.success('Tarefa adicionada com sucesso!')
+            toast.success("Tarefa adicionada com sucesso!");
 
             setTask("");
         } catch (error) {
@@ -49,6 +48,7 @@ const AddTask = ({ fetchTasks }) => {
                     label="Adicionar tarefa..."
                     value={task}
                     onChange={onChange}
+                    onEnterPress={handleTaskAddition}
                 />
                 <CustomButton onClick={handleTaskAddition}>
                     <FaPlus size={14} color="#fff" />
