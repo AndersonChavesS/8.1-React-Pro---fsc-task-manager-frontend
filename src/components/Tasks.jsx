@@ -13,7 +13,7 @@ const Tasks = () => {
     const fetchTasks = useCallback(async () => {
         try {
             const { data } = await axios.get(
-                'https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks'
+                `${process.env.REACT_APP_API_URL}/tasks`
             )
             setTasks(data)
         } catch (_error) {

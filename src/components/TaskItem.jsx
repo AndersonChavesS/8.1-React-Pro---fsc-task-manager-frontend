@@ -9,7 +9,7 @@ const TaskItem = ({ task, fetchTasks }) => {
     const handleTaskDeletion = async () => {
         try {
             await axios.delete(
-                `https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks/${task._id}`
+                `${process.env.REACT_APP_API_URL}/tasks/${task._id}`
             )
 
             if (typeof fetchTasks === 'function') {
@@ -25,7 +25,7 @@ const TaskItem = ({ task, fetchTasks }) => {
     const handleTaskCompletionChange = async (e) => {
         try {
             await axios.patch(
-                `https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks/${task._id}`,
+                `${process.env.REACT_APP_API_URL}/tasks/${task._id}`,
                 { isCompleted: e.target.checked }
             )
 

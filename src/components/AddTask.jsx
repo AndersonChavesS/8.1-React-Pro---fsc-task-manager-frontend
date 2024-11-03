@@ -23,13 +23,10 @@ const AddTask = ({ fetchTasks }) => {
                 return toast.warn(messageError)
             }
 
-            await axios.post(
-                'https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks',
-                {
-                    description: task,
-                    isCompleted: false,
-                }
-            )
+            await axios.post(`${process.env.REACT_APP_API_URL}/tasks`, {
+                description: task,
+                isCompleted: false,
+            })
 
             await fetchTasks()
 
