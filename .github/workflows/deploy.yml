@@ -13,6 +13,6 @@ jobs:
 
       - name: Deploy to Production-task-manager-frontend
         env:
-           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL || 'default_value' }}
+           deploy_url: ${{ secrets.RENDER_DEPLOY_URL }}
         run:
           curl $deploy_url
