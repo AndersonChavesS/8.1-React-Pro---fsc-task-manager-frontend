@@ -1,0 +1,18 @@
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Production-task-manager-frontend
+        env:
+           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run:
+          curl $deploy_url
