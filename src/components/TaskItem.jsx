@@ -1,50 +1,50 @@
-import { AiFillDelete } from "react-icons/ai";
-import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { AiFillDelete } from 'react-icons/ai'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-import "./TaskItem.scss";
+import './TaskItem.scss'
 
 const TaskItem = ({ task, fetchTasks }) => {
     const handleTaskDeletion = async () => {
         try {
             await axios.delete(
                 `https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks/${task._id}`
-            );
+            )
 
-            if (typeof fetchTasks === "function") {
-                await fetchTasks();
+            if (typeof fetchTasks === 'function') {
+                await fetchTasks()
             }
 
-            toast.success("A tarefa foi removida com sucesso!");
+            toast.success('A tarefa foi removida com sucesso!')
         } catch (_error) {
-            toast.error("Algo Deu Errado.");
+            toast.error('Algo Deu Errado.')
         }
-    };
+    }
 
     const handleTaskCompletionChange = async (e) => {
         try {
             await axios.patch(
                 `https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks/${task._id}`,
                 { isCompleted: e.target.checked }
-            );
+            )
 
-            if (typeof fetchTasks === "function") {
-                await fetchTasks();
+            if (typeof fetchTasks === 'function') {
+                await fetchTasks()
             }
 
-            toast.success("A tarefa foi modificada com sucesso!");
+            toast.success('A tarefa foi modificada com sucesso!')
         } catch (_error) {
-            toast.error("Algo deu errado.");
+            toast.error('Algo deu errado.')
         }
-    };
+    }
 
     return (
         <div className="task-item-container">
             <div className="task-description">
                 <label
                     className={`checkbox-container ${
-                        task.isCompleted ? "completed" : ""
+                        task.isCompleted ? 'completed' : ''
                     }`}
                 >
                     {task.description}
@@ -64,7 +64,7 @@ const TaskItem = ({ task, fetchTasks }) => {
                 />
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default TaskItem;
+export default TaskItem

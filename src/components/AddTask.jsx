@@ -1,45 +1,45 @@
-import { useState } from "react";
-import { FaPlus } from "react-icons/fa";
-import axios from "axios";
-import { toast } from "react-toastify"; // Remova ToastContainer daqui
+import { useState } from 'react'
+import { FaPlus } from 'react-icons/fa'
+import axios from 'axios'
+import { toast } from 'react-toastify' // Remova ToastContainer daqui
 
-import "./AddTask.scss";
-import CustomInput from "./CustomInput";
-import CustomButton from "./CustomButton";
+import './AddTask.scss'
+import CustomInput from './CustomInput'
+import CustomButton from './CustomButton'
 
 const AddTask = ({ fetchTasks }) => {
-    const [task, setTask] = useState("");
+    const [task, setTask] = useState('')
 
     const messageError =
-        "A tarefa precisa de uma descrição para ser adicionada.";
+        'A tarefa precisa de uma descrição para ser adicionada.'
 
     const onChange = (e) => {
-        setTask(e.target.value);
-    };
+        setTask(e.target.value)
+    }
 
     const handleTaskAddition = async () => {
         try {
             if (task.length === 0) {
-                return toast.warn(messageError);
+                return toast.warn(messageError)
             }
 
             await axios.post(
-                "https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks",
+                'https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks',
                 {
                     description: task,
                     isCompleted: false,
                 }
-            );
+            )
 
-            await fetchTasks();
+            await fetchTasks()
 
-            toast.success("Tarefa adicionada com sucesso!");
+            toast.success('Tarefa adicionada com sucesso!')
 
-            setTask("");
+            setTask('')
         } catch (_error) {
-            toast.error("Algo deu errado.");
+            toast.error('Algo deu errado.')
         }
-    };
+    }
 
     return (
         <>
@@ -55,7 +55,7 @@ const AddTask = ({ fetchTasks }) => {
                 </CustomButton>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AddTask;
+export default AddTask

@@ -1,37 +1,37 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
-import axios from "axios";
+import { useEffect, useState, useMemo, useCallback } from 'react'
+import axios from 'axios'
 
-import "./Tasks.scss";
-import TaskItem from "./TaskItem";
-import AddTask from "./AddTask";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import './Tasks.scss'
+import TaskItem from './TaskItem'
+import AddTask from './AddTask'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Tasks = () => {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState([])
 
     const fetchTasks = useCallback(async () => {
         try {
             const { data } = await axios.get(
-                "https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks"
-            );
-            setTasks(data);
+                'https://eight-react-pro-fsc-task-manager-backend.onrender.com/tasks'
+            )
+            setTasks(data)
         } catch (_error) {
-            toast.error("Não foi possível recuperar as tarefas.");
+            toast.error('Não foi possível recuperar as tarefas.')
         }
-    }, []);
+    }, [])
 
     const lastTasks = useMemo(() => {
-        return tasks.filter((task) => task.isCompleted === false);
-    }, [tasks]);
+        return tasks.filter((task) => task.isCompleted === false)
+    }, [tasks])
 
     const completedTasks = useMemo(() => {
-        return tasks.filter((task) => task.isCompleted === true);
-    }, [tasks]);
+        return tasks.filter((task) => task.isCompleted === true)
+    }, [tasks])
 
     useEffect(() => {
-        fetchTasks();
-    }, [fetchTasks]);
+        fetchTasks()
+    }, [fetchTasks])
 
     return (
         <>
@@ -68,7 +68,7 @@ const Tasks = () => {
                 <ToastContainer />
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Tasks;
+export default Tasks
